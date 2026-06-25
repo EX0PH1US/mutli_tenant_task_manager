@@ -127,3 +127,11 @@ export const logout = async (req, res) => {
 
     res.json({ status: "Success", message: "Successfully Logged Out from this device." })
 }
+
+export const kickUser = async (req, res) => {
+    const { id } = req.body
+
+    const user = await User.findByIdAndDelete(id)
+
+    res.json({ status: "Kicked", message: `Successfully kicked ${ user.name }, UserID: ${ user._id } from Org: ${ req.user.orgId }` })
+}
