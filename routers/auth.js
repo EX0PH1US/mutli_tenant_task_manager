@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { login, logout, refresh, registerOrg, registerStaff } from "../controllers/auth.js"
+import { kickUser, login, logout, refresh, registerOrg, registerStaff } from "../controllers/auth.js"
 import { userAuth, isLoggedIn, isAdmin } from "../middlewares/authenticators.js"
 const router = Router()
 import { rateLimit } from "express-rate-limit"
@@ -18,6 +18,6 @@ router.post('/login', authLimiter, isLoggedIn, login)
 router.post('/register/staff', isLoggedIn, registerStaff)
 router.post('/refresh', isLoggedIn, refresh)
 router.post('/logout', userAuth, logout)
-// router.delete('/kick', isAdmin)
+router.delete('/kick/:id', userAuth, isAdmin, kickUser)
 
 export default router

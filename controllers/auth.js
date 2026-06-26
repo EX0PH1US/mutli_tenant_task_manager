@@ -141,8 +141,13 @@ export const logout = async (req, res) => {
 
 export const kickUser = async (req, res) => {
     const { id } = req.body
+    const { orgId } = req.user
 
-    const user = await User.findByIdAndDelete(id)
+    const user = await User.findOneAndDelete({ _id: id, orgId })
+
+    if (!user) {
+        return res.status(404).json({ error: "Not Found", message: "Member not found!" })
+    }
 
     res.json({ status: "Kicked", message: `Successfully kicked ${ user.name }, UserID: ${ user._id } from Org: ${ req.user.orgId }` })
 }
