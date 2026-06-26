@@ -1,4 +1,3 @@
-````markdown
 # Task Management REST API
 
 A secure multi-tenant REST API for managing organisations, users, and task assignments. Built with Express, MongoDB, and JWT authentication, the API ensures complete data isolation between organisations while providing role-based access control.
@@ -259,7 +258,7 @@ Every authenticated request contains the user's organisation ID within the JWT p
 
 ### Authentication Endpoints
 
-- **15 requests**
+- **50 requests**
 - Per **2 hours**
 - Per IP Address + Email
 
@@ -292,11 +291,10 @@ Parameters:
 | Parameter | Default |
 |----------|---------|
 | page | 1 |
-| limit | 10 |
+| limit | 5 |
 
 ---
 
 ## License
 
 This project is licensed under the MIT License.
-````
