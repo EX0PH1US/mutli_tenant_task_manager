@@ -5,8 +5,10 @@ import { rateLimit } from "express-rate-limit"
 import cookieParser from "cookie-parser"
 import errorMiddleware from "./middlewares/errorMiddleware.js"
 import 'dotenv/config'
+import morgan from "morgan"
 import taskRouter from "./routers/tasks.js"
 import authRouter from "./routers/auth.js"
+import cors from "cors"
 
 const app = express()
 
@@ -21,10 +23,20 @@ const limiter = rateLimit({
     }
 })
 
+app.use(cors({
+    origin: process.env.FRONT || 'http://localhost:3000',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: ['Content-type', 'Authorization'],
+    credentials: true
+}))
+
+app.use(rateLimit)
 app.use(helmet())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cookieParser())
+
+app.use(morgon('common'))
 
 
 try {
