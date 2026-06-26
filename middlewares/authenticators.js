@@ -33,6 +33,7 @@ export const userAuth = (req, res, next) => {
     const result = jwt.verify(token, pub_key, { algorithms: ['RS256'] })
 
     req.user = result
+    console.log(req.user)
 
     next()
 }
@@ -65,6 +66,7 @@ export const isLoggedIn = (req, res, next) => {
         const result = jwt.verify(token, pub_key, { algorithms: ['RS256'] })
         res.status(400).json({ error: "Already Logged In", message: `You are already logged in as ${ result.name }` })
     } catch (err) {
+        console.error('Ho liya bahi error teri maa ki chu', err)
         next()
     }
 }

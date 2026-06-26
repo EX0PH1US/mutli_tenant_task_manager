@@ -34,7 +34,9 @@ export const registerOrg = async (req, res, next) => {
 }
 
 export const registerStaff = async (req, res) => {
-    const { email, name, orgSlug, orgId } = req.body
+    const { email, name, password, orgName, orgId } = req.body
+
+    const orgSlug = slugify(orgName, { lower: true, strict: true })
 
     let org = null
 
@@ -80,7 +82,7 @@ export const login = async (req, res) => {
 
     await RefreshToken.create({ token: refreshToken, user: user._id })
 
-    res.cookie('refeshToken', refreshToken, {
+    res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
@@ -104,7 +106,15 @@ export const refresh = async (req, res) => {
         return res.status(400).json({ error: "Invalid Token", message: "Token is invalid" })
     }
 
-    const payload = jwt.verify(rtoken, pub_key, { algorithms: ['RS256'] })
+    const result = jwt.verify(rtoken.token, pub_key, { algorithms: ['RS256'] })
+
+    const payload = {
+        email: result.email,
+        name: result.name,
+        userid: result.userid,
+        orgId: result.orgId,
+        role: result.role
+    }
 
     const newToken = jwt.sign(payload, priv_key, { algorithm: 'RS256', expiresIn: '10m' })
 
