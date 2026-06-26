@@ -7,6 +7,7 @@ import 'dotenv/config'
 import RefreshToken from "../models/refreshToken.js"
 import slugify from "slugify"
 
+
 const priv_key = readFileSync(process.env.PRIV)
 const pub_key = readFileSync('./pub.pem')
 

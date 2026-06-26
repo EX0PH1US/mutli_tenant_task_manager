@@ -10,6 +10,17 @@ import authRouter from "./routers/auth.js"
 
 const app = express()
 
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, 
+	limit: 250, 
+	standardHeaders: 'draft-8', 
+	legacyHeaders: false, 
+	ipv6Subnet: 64, 
+    handler: (req, res, next, options) => {
+        res.status(429).json({ error: "Too Many Requests", message: "Too many requests were sent to the server, try again in a few moments." })
+    }
+})
+
 app.use(helmet())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
