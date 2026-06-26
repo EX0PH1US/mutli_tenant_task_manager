@@ -295,6 +295,15 @@ Parameters:
 
 ---
 
+## Envoirnment Variables
+
+```
+URL=mongodb_url
+FRONT=frontend_url_for_cors
+PRIV=secrete_private_rs256_key_path
+NODE_ENV=production_or_development
+```
+
 ## License
 
 This project is licensed under the MIT License.
