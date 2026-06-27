@@ -8,7 +8,7 @@ import RefreshToken from "../models/refreshToken.js"
 import slugify from "slugify"
 
 
-const priv_key = readFileSync(process.env.PRIV)
+const priv_key = readFileSync(process.env.PRIV) || process.env.KEY.replace(/\\n/g, '\n')
 const pub_key = readFileSync('./pub.pem')
 
 export const registerOrg = async (req, res, next) => {
