@@ -1,6 +1,8 @@
 export default (err, req, res, next) => {
 
-    console.error(err)
+    if (process.env.NODE_ENV !== 'production') {
+        console.error(err)
+    }
 
     let statusCode = err.statusCode || 500
     let message = err.message || "Internal Error"
