@@ -122,7 +122,7 @@ POST /logout
 
 ---
 
-## Task Routes
+## Task and Other Routes
 
 > All task routes require a valid JWT Access Token.
 
@@ -198,6 +198,27 @@ GET /tasks/my
 Supports pagination.
 
 ---
+
+### Get Member List 
+
+Returns all the members in your organisation.
+
+```http
+GET /memberlist
+```
+
+Supports Pagination. Need to be logged in.
+
+---
+
+### Kick Member
+
+Kick a member from your organisation
+
+```http
+DELETE /kick/:id 
+```
+You need to be logged in as admin to kick a member.
 
 ## Data Models
 
