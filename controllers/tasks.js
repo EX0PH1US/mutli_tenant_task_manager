@@ -34,9 +34,11 @@ export const getAllTasks = async (req, res) => {
 
     res.json({
         tasks: tasks,
-        currentPage: page,
-        limit: limit, 
-        totalPages: totalCount
+        meta: {
+            currentPage: page,
+            limit: limit, 
+            totalPages: totalCount
+        }
     })
 }
 
@@ -56,9 +58,11 @@ export const getMyTasks = async (req, res) => {
 
     res.json({
         tasks: tasks,
-        currentPage: page,
-        limit: limit, 
-        totalPages: totalCount
+        meta: {
+            currentPage: page,
+            limit: limit, 
+            totalPages: totalCount
+        }
     })
 }
 

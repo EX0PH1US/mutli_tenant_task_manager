@@ -33,7 +33,6 @@ export const userAuth = (req, res, next) => {
     const result = jwt.verify(token, pub_key, { algorithms: ['RS256'] })
 
     req.user = result
-    console.log(req.user)
 
     next()
 }
