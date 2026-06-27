@@ -30,7 +30,7 @@ app.use(cors({
     credentials: true
 }))
 
-app.use(rateLimit)
+app.use(limiter)
 app.use(helmet())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
