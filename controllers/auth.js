@@ -144,10 +144,10 @@ export const logout = async (req, res) => {
 }
 
 export const kickUser = async (req, res) => {
-    const { id } = req.body
+    const { id } = req.params
     const { orgId } = req.user
 
-    const user = await User.findOneAndDelete({ _id: id, orgId })
+    const user = await User.findOneAndDelete({ _id: id, organisation: orgId })
 
     if (!user) {
         return res.status(404).json({ error: "Not Found", message: "Member not found!" })

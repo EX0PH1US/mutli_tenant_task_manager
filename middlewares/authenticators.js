@@ -34,6 +34,10 @@ export const userAuth = (req, res, next) => {
 
     req.user = result
 
+    if (process.env.NODE_ENV !== 'production') {
+        console.error(req.user)
+    }
+
     next()
 }
 
