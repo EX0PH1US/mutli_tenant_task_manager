@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cookieParser())
 
-app.use(morgon('common'))
+app.use(morgan('common'))
 
 
 try {
