@@ -37,8 +37,12 @@ export const registerOrg = async (req, res, next) => {
 export const registerStaff = async (req, res) => {
     const { email, name, password, orgName, orgId } = req.body
 
-    const orgSlug = slugify(orgName, { lower: true, strict: true })
+    let orgSlug = null
 
+    if (orgName) {
+        orgSlug = slugify(orgName, { lower: true, strict: true })
+    }
+    
     let org = null
 
     if (orgId) {
