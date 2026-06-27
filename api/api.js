@@ -3,11 +3,11 @@ import mongoose from "mongoose"
 import helmet from "helmet"
 import { rateLimit } from "express-rate-limit"
 import cookieParser from "cookie-parser"
-import errorMiddleware from "./middlewares/errorMiddleware.js"
+import errorMiddleware from "../middlewares/errorMiddleware.js"
 import 'dotenv/config'
 import morgan from "morgan"
-import taskRouter from "./routers/tasks.js"
-import authRouter from "./routers/auth.js"
+import taskRouter from "../routers/tasks.js"
+import authRouter from "../routers/auth.js"
 import cors from "cors"
 
 const app = express()
